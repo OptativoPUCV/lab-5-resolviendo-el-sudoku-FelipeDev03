@@ -55,7 +55,7 @@ List* get_adj_nodes(Node* n){
 
     int vacioX = -1, vacioY = -1;
     int vacioEncontrado = 0;
-    for (int i = 0 ; i < 9 ; i++){
+    for (int i = 0 ; i < 9 && !vacioEncontrado ; i++){
       for (int j = 0 ; j < 9 ; j++){
         if (n->sudo[i][j] == 0){
           vacioX = i;
@@ -73,6 +73,7 @@ List* get_adj_nodes(Node* n){
       adjNode->sudo[vacioX][vacioY] = j;
       pushBack(list, adjNode);
     }
+
     return list;
 }
 
