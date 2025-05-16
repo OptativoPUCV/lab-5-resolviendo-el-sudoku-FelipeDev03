@@ -51,7 +51,7 @@ int is_valid(Node* n){
 
 List* get_adj_nodes(Node* n){
     List* list=createList();
-    if (list == NULL) return NULL;
+    if (list == NULL) return list;
 
     int vacioX = -1, vacioY = -1;
     int vacioEncontrado = 0;
@@ -64,7 +64,6 @@ List* get_adj_nodes(Node* n){
           break;
         }
       }
-      if (vacioEncontrado) break;
     }
 
     if (!vacioEncontrado) return NULL;
