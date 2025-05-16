@@ -53,7 +53,7 @@ List* get_adj_nodes(Node* n){
     List* list=createList();
     if (list == NULL) return NULL;
 
-    int vacioX = -1, vacioY = -1;
+    int vacioX = 0, vacioY = 0;
     int vacioEncontrado = 0;
     for (int i = 0 ; i < 9 ; i++){
       for (int j = 0 ; j < 9 ; j++){
