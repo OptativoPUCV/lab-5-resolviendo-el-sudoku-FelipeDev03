@@ -44,37 +44,82 @@ void print_node(Node* n){
 }
 
 int is_valid(Node* n){
+  if (n == NULL) return 0;
 
+    for (int i = 0; i < 9; i++) {
+        int marcas_fila[10] = {0};
+        for (int j = 0; j < 9; j++) {
+            if (n->sudo[i][j] != 0) {
+                if (marcas_fila[n->sudo[i][j]] == 1) {
+                    return 0;
+                }
+                marcas_fila[n->sudo[i][j]] = 1;
+            }
+        }
+    }
+
+    for (int j = 0; j < 9; j++) {
+        int marcas_columna[10] = {0};
+        for (int i = 0; i < 9; i++) {
+            if (n->sudo[i][j] != 0) {
+                if (marcas_columna[n->sudo[i][j]] == 1) {
+                    return 0;
+                }
+                marcas_columna[n->sudo[i][j]] = 1;
+            }
+        }
+    }
+
+    for (int k = 0; k < 9; k++) {
+        int marcas_submatriz[10] = {0};
+        for (int p = 0; p < 9; p++){
+            int r = 3*(k/3) + (p/3) ;
+            int c = 3*(k%3) + (p%3) ;
+            if (n->sudo[r][c] != 0) {
+                if (marcas_submatriz[n->sudo[r][c]] == 1) {
+                    return 0;
+                }
+                marcas_submatriz[n->sudo[r][c]] = 1;
+            }
+        }
+    }
     return 1;
 }
 
 
 List* get_adj_nodes(Node* n){
-    List* list=createList();
-    if (list == NULL) return list;
+    List* lista_adyacentes = createList();
+    if (n == NULL) return lista_adyacentes;
 
-    int vacioX = -1, vacioY = -1;
-    int vacioEncontrado = 0;
-    for (int i = 0 ; i < 9 ; i++){
-      for (int j = 0 ; j < 9 ; j++){
-        if (n->sudo[i][j] == 0){
-          vacioX = i;
-          vacioY = j;
-          vacioEncontrado = 1;
-          break;
+    int primera_fila_vacia = -1;
+    int primera_columna_vacia = -1;
+
+    for (int i = 0; i < 9; i++) {
+        for (int j = 0; j < 9; j++) {
+            if (n->sudo[i][j] == 0) {
+                primera_fila_vacia = i;
+                primera_columna_vacia = j;
+                goto casilla_vacia_encontrada_completo;
+            }
         }
-      }
     }
 
-    if (!vacioEncontrado) return NULL;
-
-    for (int j = 1 ; j < 10 ; j++){
-      Node* adjNode = copy(n);
-      adjNode->sudo[vacioX][vacioY] = j;
-      pushBack(list, adjNode);
+casilla_vacia_encontrada_completo:
+    if (primera_fila_vacia == -1) {
+        return lista_adyacentes;
     }
 
-    return list;
+    for (int numero_a_colocar = 1; numero_a_colocar <= 9; numero_a_colocar++) {
+        Node* nodo_adyacente = copy(n);
+        nodo_adyacente->sudo[primera_fila_vacia][primera_columna_vacia] = numero_a_colocar;
+        
+        if (is_valid(nodo_adyacente)) {
+            pushBack(lista_adyacentes, nodo_adyacente);
+        } else {
+            free(nodo_adyacente);
+        }
+    }
+    return lista_adyacentes;
 }
 
 
