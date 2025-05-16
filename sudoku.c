@@ -53,7 +53,8 @@ List* get_adj_nodes(Node* n){
     List* list=createList();
     if (list == NULL) return NULL;
 
-    int vacioX, vacioY, vacioEncontrado = 0;
+    int vacioX = -1, vacioY = -1;
+    int vacioEncontrado = 0;
     for (int i = 0 ; i < 9 ; i++){
       for (int j = 0 ; j < 9 ; j++){
         if (n->sudo[i][j] == 0){
@@ -63,7 +64,6 @@ List* get_adj_nodes(Node* n){
           break;
         }
       }
-      if (vacioEncontrado) break;
     }
 
     if (!vacioEncontrado) return NULL;
@@ -71,7 +71,7 @@ List* get_adj_nodes(Node* n){
     for (int j = 1 ; j < 10 ; j++){
       Node* adjNode = copy(n);
       adjNode->sudo[vacioX][vacioY] = j;
-      if (list != NULL) pushBack(list, adjNode);
+      pushBack(list, adjNode);
     }
     return list;
 }
