@@ -66,7 +66,9 @@ List* get_adj_nodes(Node* n){
 
     for (int j = 1 ; j < 10 ; j++){
       n->sudo[vacioX][vacioY] = j;
-      push_back(list, copy(n));
+      Node* adjNode = (Node*) malloc(sizeof(Node));
+      adjNode = copy(n);
+      push_back(list, adjNode);
     }
     return list;
 }
