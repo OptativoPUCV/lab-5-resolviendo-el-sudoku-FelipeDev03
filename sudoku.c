@@ -64,6 +64,8 @@ List* get_adj_nodes(Node* n){
       if (vacioEncontrado) break;
     }
 
+    if (!vacioEncontrado) return NULL;
+
     for (int j = 1 ; j < 10 ; j++){
       Node* adjNode = copy(n);
       adjNode->sudo[vacioX][vacioY] = j;
