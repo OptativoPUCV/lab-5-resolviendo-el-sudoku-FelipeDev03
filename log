@@ -2,3 +2,14 @@ Fri, May 16, 2025 11:23:07 AM:
  tests:  0|5
 total_score: 0/70
 3f0e54c
+Fri, May 16, 2025 11:38:41 AM: 
+ sudoku.c | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
+Compilation failed
+In file included from test.c:5:0:
+sudoku.c: In function 'get_adj_nodes':
+sudoku.c:69:7: error: implicit declaration of function 'push_back' [-Werror=implicit-function-declaration]
+       push_back(list, copy(n));
+       ^~~~~~~~~
+cc1.exe: all warnings being treated as errors
+dc46645
