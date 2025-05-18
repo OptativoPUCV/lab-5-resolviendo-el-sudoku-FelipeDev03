@@ -86,32 +86,6 @@ int is_valid(Node* n){
     return 1;
 }
 
-/*List* get_adj_nodes(Node* n){
-    List* list=createList();
-    if (list == NULL) return NULL;
-
-    int vacioX, vacioY, vacioEncontrado = 0;
-    for (int i = 0 ; i < 9 ; i++){
-      for (int j = 0 ; j < 9 ; j++){
-        if (n->sudo[i][j] == 0){
-          vacioX = i;
-          vacioY = j;
-          vacioEncontrado = 1;
-          break;
-        }
-      }
-      if (vacioEncontrado) break;
-    }
-
-    if (!vacioEncontrado) return NULL;
-
-    for (int j = 1 ; j < 10 ; j++){
-      Node* adjNode = copy(n);
-      adjNode->sudo[vacioX][vacioY] = j;
-      if (list != NULL) pushBack(list, adjNode);
-    }
-    return list;
-}*/
 List* get_adj_nodes(Node* n){
     List* lista_adyacentes = createList();
     if (n == NULL) return lista_adyacentes;
