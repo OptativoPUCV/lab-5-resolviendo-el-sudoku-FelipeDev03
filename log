@@ -142,3 +142,9 @@ sudoku.c:138:12: error: implicit declaration of function 'size' [-Werror=implici
             ^~~~
 cc1.exe: all warnings being treated as errors
 d1241c4
+Sun, May 18, 2025  8:17:17 PM: 
+ sudoku.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ tests:  10|0
+total_score: 70/70
+7ae70af
